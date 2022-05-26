@@ -1,0 +1,416 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
+import controlador.LibroController;
+import dao.DbConnection;
+import exception.isbnException;
+import modelo.Libro;
+
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JCheckBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class frmPlantilla extends JFrame {
+	private JPanel panel;
+	private JButton btnPrimero, btnAtras, btnAdelante, btnUltimo;
+	private JButton btnNuevo, btnEditar, btnGuardar, btnDeshacer, btnBorrar;
+	private JPanel panelMantenimiento;
+	private JPanel panelGrid;
+	private JScrollPane scrollPane;
+	private JTable tblLibros;	
+	DefaultTableModel dtm;
+	private JFrame frame;
+	JComboBox comboCampo;
+	private JTextField textFiltrar;
+	JButton btnFiltrar;
+	JLabel lblConsulta;	
+	private JPanel panel_1;
+	private JLabel lblIdLibros;
+	private JLabel lblTitulo;
+	private JLabel lblAutor;
+	private JLabel lblEditorial;
+	private JLabel lblFechaPrestamo;
+	private JLabel lblFechaDevolucion;
+	private JLabel lblIsbn;
+	private JTextField textIdLibros;
+	private JTextField textTitulo;
+	private JTextField textAutor;
+	private JTextField textEditorial;
+	private JTextField textFechaPrestamo;
+	private JTextField textFechaDevolucion;
+	private JTextField textIsbn;
+	private JCheckBox chckbxPrestado;
+	private JLabel lblErrorIsbn;
+	private List<Libro> libros;
+	private List<JTextField> textos;
+	private String datos[][];
+	int nav = 0;
+	
+	
+	
+	public frmPlantilla() throws SQLException, isbnException {
+		setTitle("F O R M U L A R I O   D E   M A N T E N I M I E N T O");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1182, 476);
+		
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panel);
+		panel.setLayout(null);
+		DbConnection dbConnection = new DbConnection();
+		Connection conn = dbConnection.getConn();
+		LibroController biblioteca = new LibroController(conn);
+		libros = biblioteca.leerDatos();
+		int c = 0;
+		for (Libro libro : libros) {
+			c++;
+		}
+		datos = new String[c][];
+		int x = 0;
+		for (Libro libro : libros) {
+			datos[x] = libro.toString().split(",,");
+			x++;
+		}
+		textos = new ArrayList<JTextField>();
+		definirVentana();
+		eventos();
+		
+		
+		frame=this;
+		this.setVisible(true);
+	}
+
+
+
+
+
+
+	//E V E N T O S
+	private void eventos() {
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nav--;
+				if (nav < 0) {
+					nav = datos.length - 1;
+				}
+				int y = 0;
+				for (JTextField texto : textos) {
+					texto.setText(datos[nav][y]);
+					y++;
+				}
+				y++;
+				if (datos[nav][y].equals("true")) {
+					chckbxPrestado.setSelected(true);
+				} else {
+					chckbxPrestado.setSelected(false);
+				}
+			}
+		});
+		
+		btnAdelante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nav++;
+				if (nav == datos.length) {
+					nav = 0;
+				}
+				int y = 0;
+				for (JTextField texto : textos) {
+					texto.setText(datos[nav][y]);
+					y++;
+				}
+				y++;
+				if (datos[nav][y].equals("true")) {
+					chckbxPrestado.setSelected(true);
+				} else {
+					chckbxPrestado.setSelected(false);
+				}
+			}
+		});
+		
+		btnPrimero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nav = 0;
+				int y = 0;
+				for (JTextField texto : textos) {
+					texto.setText(datos[nav][y]);
+					y++;
+				}
+				y++;
+				if (datos[nav][y].equals("true")) {
+					chckbxPrestado.setSelected(true);
+				} else {
+					chckbxPrestado.setSelected(false);
+				}
+			}
+		});
+		
+		btnUltimo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nav = datos.length - 1;
+				int y = 0;
+				for (JTextField texto : textos) {
+					texto.setText(datos[nav][y]);
+					y++;
+				}
+				y++;
+				if (datos[nav][y].equals("true")) {
+					chckbxPrestado.setSelected(true);
+				} else {
+					chckbxPrestado.setSelected(false);
+				}
+			}
+		});
+	}
+
+	// D E F I N I R   V E N T A N A
+private void definirVentana() {
+	
+
+	JPanel panelNavegador = new JPanel();
+	panelNavegador.setLayout(null);
+	panelNavegador.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 255), 2), "Navegador", TitledBorder.LEADING,
+			TitledBorder.TOP, null, Color.BLUE));
+	panelNavegador.setBounds(28, 356, 218, 74);
+	panel.add(panelNavegador);
+
+	// NAVEGADOR
+	ImageIcon imaNav = new ImageIcon("imagenes/navPri.jpg");
+	btnPrimero = new JButton("", imaNav);
+
+	btnPrimero.setBounds(15, 15, 40, 40);
+	panelNavegador.add(btnPrimero);
+	imaNav = new ImageIcon("imagenes/navIzq.jpg");
+	btnAtras = new JButton("", imaNav);
+	btnAtras.setBounds(65, 15, 40, 40);
+	panelNavegador.add(btnAtras);
+	imaNav = new ImageIcon("imagenes/navDer.jpg");
+	btnAdelante = new JButton("", imaNav);
+	
+	btnAdelante.setBounds(115, 15, 40, 40);
+	panelNavegador.add(btnAdelante);
+	imaNav = new ImageIcon("imagenes/navUlt.jpg");
+	btnUltimo = new JButton("", imaNav);
+
+	btnUltimo.setBounds(165, 15, 40, 40);
+	panelNavegador.add(btnUltimo);
+	
+	panelMantenimiento = new JPanel();
+	panelMantenimiento.setLayout(null);
+	panelMantenimiento.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 255), 2), "Mantenimiento Libros", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+	panelMantenimiento.setBounds(28, 21, 266, 74);
+	panel.add(panelMantenimiento);
+	
+	imaNav = new ImageIcon("imagenes/botonAgregar.jpg");
+	imaNav = new ImageIcon(imaNav.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_DEFAULT));
+	btnNuevo = new JButton("", imaNav);
+	
+
+	btnNuevo.setToolTipText("Insertar Nuevo Libro");
+	btnNuevo.setBounds(15, 15, 40, 40);
+	panelMantenimiento.add(btnNuevo);
+	
+	imaNav = new ImageIcon("imagenes/botonEditar.jpg");
+	imaNav = new ImageIcon(imaNav.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_DEFAULT));
+	btnEditar = new JButton("", imaNav);
+	
+
+	btnEditar.setToolTipText("Editar");
+	btnEditar.setBounds(65, 15, 40, 40);
+	panelMantenimiento.add(btnEditar);
+	
+	imaNav = new ImageIcon("imagenes/botonGuardar.jpg");
+	imaNav = new ImageIcon(imaNav.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_DEFAULT));
+	btnGuardar = new JButton("", imaNav);
+	
+
+
+	btnGuardar.setEnabled(false);
+	btnGuardar.setToolTipText("Guardar");
+	btnGuardar.setBounds(166, 15, 40, 40);
+	panelMantenimiento.add(btnGuardar);
+	
+	imaNav = new ImageIcon("imagenes/botonDeshacer.jpg");
+	imaNav = new ImageIcon(imaNav.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_DEFAULT));
+	btnDeshacer = new JButton("", imaNav);
+
+
+	btnDeshacer.setEnabled(false);
+	btnDeshacer.setToolTipText("Deshacer");
+	btnDeshacer.setBounds(216, 15, 40, 40);
+	panelMantenimiento.add(btnDeshacer);
+	
+	imaNav = new ImageIcon("imagenes/borrar.jpg");
+	imaNav = new ImageIcon(imaNav.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_DEFAULT));
+	btnBorrar = new JButton("", imaNav);
+	btnBorrar.setToolTipText("Borrar Registro");
+	btnBorrar.setBounds(116, 15, 40, 40);
+	panelMantenimiento.add(btnBorrar);
+	
+	panelGrid = new JPanel();
+	panelGrid.setBounds(363, 98, 766, 305);
+	panel.add(panelGrid);
+	panelGrid.setLayout(new BorderLayout(0, 0));
+	
+	scrollPane = new JScrollPane();
+	panelGrid.add(scrollPane, BorderLayout.CENTER);
+	dtm=new DefaultTableModel();
+	tblLibros = new JTable(dtm);
+
+	
+	scrollPane.setViewportView(tblLibros);
+	
+	 comboCampo = new JComboBox();
+	 comboCampo.setModel(new DefaultComboBoxModel(new String[] {"titulo", "autor", "editorial"}));
+	comboCampo.setBounds(396, 52, 68, 20);
+	panel.add(comboCampo);
+	
+	textFiltrar = new JTextField();
+	textFiltrar.setBounds(472, 52, 177, 20);
+	panel.add(textFiltrar);
+	textFiltrar.setColumns(10);
+	
+	 btnFiltrar = new JButton("FILTRAR");
+	
+	btnFiltrar.setBounds(659, 51, 89, 23);
+	panel.add(btnFiltrar);
+	
+	 lblConsulta = new JLabel("Consulta");
+	lblConsulta.setBounds(392, 21, 257, 14);
+	panel.add(lblConsulta);
+	
+	panel_1 = new JPanel();
+	panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 255), 2), "Libros", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
+	panel_1.setBounds(28, 106, 307, 239);
+	panel.add(panel_1);
+	panel_1.setLayout(null);
+	
+	lblIdLibros = new JLabel("IdLibros");
+	lblIdLibros.setFont(new Font("Tahoma", Font.BOLD, 11));
+	lblIdLibros.setBounds(10, 29, 66, 14);
+	panel_1.add(lblIdLibros);
+	
+	lblTitulo = new JLabel("Titulo");
+	lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 11));
+	lblTitulo.setBounds(10, 54, 66, 14);
+	panel_1.add(lblTitulo);
+	
+	lblAutor = new JLabel("Autor");
+	lblAutor.setFont(new Font("Tahoma", Font.BOLD, 11));
+	lblAutor.setBounds(10, 79, 66, 14);
+	panel_1.add(lblAutor);
+	
+	lblEditorial = new JLabel("Editorial");
+	lblEditorial.setFont(new Font("Tahoma", Font.BOLD, 11));
+	lblEditorial.setBounds(10, 104, 66, 14);
+	panel_1.add(lblEditorial);
+	
+	lblFechaPrestamo = new JLabel("FechaPrestamo");
+	lblFechaPrestamo.setFont(new Font("Tahoma", Font.BOLD, 11));
+	lblFechaPrestamo.setBounds(10, 129, 95, 14);
+	panel_1.add(lblFechaPrestamo);
+	
+	lblFechaDevolucion = new JLabel("FechaDevolucion");
+	lblFechaDevolucion.setFont(new Font("Tahoma", Font.BOLD, 11));
+	lblFechaDevolucion.setBounds(10, 154, 108, 14);
+	panel_1.add(lblFechaDevolucion);
+	
+	lblIsbn = new JLabel("Isbn");
+	lblIsbn.setFont(new Font("Tahoma", Font.BOLD, 11));
+	lblIsbn.setBounds(10, 179, 66, 14);
+	panel_1.add(lblIsbn);
+	
+	textIdLibros = new JTextField();
+	textIdLibros.setBounds(138, 26, 45, 20);
+	panel_1.add(textIdLibros);
+	textIdLibros.setColumns(10);
+	textos.add(textIdLibros);
+	
+	textTitulo = new JTextField();
+	textTitulo.setColumns(10);
+	textTitulo.setBounds(138, 51, 138, 20);
+	panel_1.add(textTitulo);
+	textos.add(textTitulo);
+	
+	textAutor = new JTextField();
+	textAutor.setColumns(10);
+	textAutor.setBounds(138, 76, 138, 20);
+	panel_1.add(textAutor);
+	textos.add(textAutor);
+	
+	textEditorial = new JTextField();
+	textEditorial.setColumns(10);
+	textEditorial.setBounds(138, 101, 138, 20);
+	panel_1.add(textEditorial);
+	textos.add(textEditorial);
+	
+	textFechaPrestamo = new JTextField();
+	textFechaPrestamo.setColumns(10);
+	textFechaPrestamo.setBounds(138, 126, 138, 20);
+	panel_1.add(textFechaPrestamo);
+	textos.add(textFechaPrestamo);
+	
+	textFechaDevolucion = new JTextField();
+	textFechaDevolucion.setColumns(10);
+	textFechaDevolucion.setBounds(138, 151, 138, 20);
+	panel_1.add(textFechaDevolucion);
+	textos.add(textFechaDevolucion);
+	
+	textIsbn = new JTextField();
+	textIsbn.setBounds(138, 176, 138, 20);
+	panel_1.add(textIsbn);
+	textIsbn.setColumns(10);
+	textos.add(textIsbn);
+	
+	chckbxPrestado = new JCheckBox("Prestado");
+	chckbxPrestado.setFont(new Font("Tahoma", Font.BOLD, 11));
+	chckbxPrestado.setBounds(10, 200, 97, 23);
+	panel_1.add(chckbxPrestado);
+	chckbxPrestado.setEnabled(false);
+	
+	lblErrorIsbn = new JLabel("");
+	lblErrorIsbn.setForeground(Color.RED);
+	lblErrorIsbn.setFont(new Font("Tahoma", Font.BOLD, 11));
+	lblErrorIsbn.setBounds(138, 204, 138, 14);
+	panel_1.add(lblErrorIsbn);
+	
+	int x = 0;
+	for (JTextField texto : textos) {
+		texto.setEditable(false);
+		texto.setText(datos[nav][x]);
+		x++;
+	}
+
+}
+}

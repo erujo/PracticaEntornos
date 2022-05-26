@@ -1,0 +1,15 @@
+package listas;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import modelo.persona;
+
+public class Lista_1 {
+	
+	public Lista_1() {
+		persona p1 = new persona("Pepe", "Garcia");
+		persona p2 = new persona("Maria", "Perez");
+		Collection coleccion = new ArrayList();
+	}
+}

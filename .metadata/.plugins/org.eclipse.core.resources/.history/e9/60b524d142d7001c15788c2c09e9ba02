@@ -1,0 +1,51 @@
+package vista;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import com.mysql.cj.protocol.Resultset;
+
+import controlador.LibroController;
+import dao.DbConnection;
+import exception.isbnException;
+import modelo.Libro;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DbConnection dbConnection = new DbConnection();
+		Connection conn = dbConnection.getConn();
+		/*try {
+			PreparedStatement pst = conn.prepareStatement("select * from libros");
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getString("titulo") + "\n");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		LibroController biblioteca = new LibroController(conn);
+		try {
+			List<Libro> libros = biblioteca.leerDatos();
+			for (Libro libro : libros) {
+				System.out.println(libro);
+			}
+			/*Libro libro = new Libro(0, "l", "kln", "knklnj", false, LocalDate.now(), LocalDate.now(), "15987", LocalDateTime.now());
+			if (biblioteca.agregarLibro(libro)) {
+				System.out.println("Se ha agregado el libro correctamente");
+			} else {
+				System.out.println("Fallo al agregar libro");
+			}*/
+			Libro libro = new Libro(0, "ujiño", "ujo", "ugondo", true, LocalDate.now(), LocalDate.now(), "15987", LocalDateTime.now());
+		} catch (SQLException | isbnException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}

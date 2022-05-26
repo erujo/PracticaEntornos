@@ -1,0 +1,24 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
+
+import modelo.Libro;
+
+public class LibroDao {
+
+	Connection cn;
+	List<Libro> libros;
+
+	public LibroDao(Connection cn) {
+		this.cn = cn;
+	}
+	
+	public List<Libro> getConsulta(String sql) {
+		libros = new ArrayList<Libro>();
+		PreparedStatement preparedStatement = new cn.prepareStatement(sql);
+	}
+	
+}

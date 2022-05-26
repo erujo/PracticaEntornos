@@ -1,0 +1,24 @@
+package vista;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import controlador.libroController;
+import dao.DbConnection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DbConnection dbc = new DbConnection();
+		Connection conn = dbc.getConn();
+		libroController libros = new libroController(conn);
+		try {
+			libros.getLibros();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		dbc.disconnect();
+	}
+
+}

@@ -1,0 +1,9 @@
+package dao;
+
+public class LibroDao {
+
+	public LibroDao() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

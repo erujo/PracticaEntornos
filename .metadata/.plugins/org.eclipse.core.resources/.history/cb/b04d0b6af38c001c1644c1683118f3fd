@@ -1,0 +1,5 @@
+package estudioPoo;
+
+public class rectangulo {
+	private Punto[] puntos;
+}

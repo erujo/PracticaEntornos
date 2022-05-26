@@ -1,0 +1,67 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class FrmCombo extends JFrame {
+
+	private JPanel panel;
+	private JLabel lblDia;
+	private JComboBox comboBox;
+	private DefaultComboBoxModel dc;
+	private JTextField textAgregar;
+	private JButton btnAgregar;
+
+	public FrmCombo() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panel);
+		panel.setLayout(null);
+		definirVentana();
+		eventos();
+		setVisible(true);
+	}
+
+	private void eventos() {
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dc.addElement(textAgregar.getText());
+				textAgregar.setText("");
+			}
+		});
+	}
+
+	private void definirVentana() {
+		dc = new DefaultComboBoxModel();
+		dc.addElement("Lunes");dc.addElement("Martes");
+		lblDia = new JLabel("Dia");
+		lblDia.setBounds(10, 11, 76, 23);
+		panel.add(lblDia);
+		
+		comboBox = new JComboBox(dc);
+		comboBox.setBounds(10, 45, 101, 22);
+		panel.add(comboBox);
+		
+		textAgregar = new JTextField();
+		textAgregar.setBounds(10, 78, 101, 20);
+		panel.add(textAgregar);
+		textAgregar.setColumns(10);
+		
+		btnAgregar = new JButton("Agregar");
+		btnAgregar.setBounds(121, 77, 89, 23);
+		panel.add(btnAgregar);
+	}
+}

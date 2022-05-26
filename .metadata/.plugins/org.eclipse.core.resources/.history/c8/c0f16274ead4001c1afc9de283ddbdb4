@@ -1,0 +1,25 @@
+package controlador;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+import dao.LibroDao;
+import modelo.Libro;
+
+public class libroController {
+	
+	private List<Libro> libros;
+	private Connection cn;
+	
+	public libroController(Connection cn) {
+		super();
+		this.cn = cn;
+	}
+
+	public List<Libro> getLibros() throws SQLException {
+		LibroDao biblioteca = new LibroDao(cn);
+		return biblioteca.getConsulta("select * from libros where id = 2");
+	}
+	
+}

@@ -1,0 +1,29 @@
+package vista;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.mysql.cj.protocol.Resultset;
+
+import dao.DbConnection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DbConnection dbConnection = new DbConnection();
+		Connection conn = dbConnection.getConn();
+		try {
+			PreparedStatement pst = conn.prepareStatement("select * from libros");
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getString("titulo\n"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

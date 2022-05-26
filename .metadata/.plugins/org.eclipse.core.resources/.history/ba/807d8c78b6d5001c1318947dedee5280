@@ -1,0 +1,17 @@
+package dao;
+
+import java.sql.Connection;
+import java.util.List;
+
+import modelo.Libro;
+
+public class LibroDao {
+
+	Connection cn;
+	List<Libro> libros;
+
+	public LibroDao(Connection cn) {
+		this.cn = cn;
+	}
+	
+}

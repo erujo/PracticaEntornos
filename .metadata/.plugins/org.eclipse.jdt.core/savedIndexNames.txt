@@ -1,0 +1,5 @@
+INDEX VERSION 1.131+C:\Users\erujo\Documents\DAW\Programacion\ws2022\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+1379778943.index
+1918332149.index
+3860584668.index

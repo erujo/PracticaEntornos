@@ -1,0 +1,38 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.cj.protocol.Resultset;
+
+import modelo.Libro;
+
+public class LibroDao {
+
+	Connection cn;
+	List<Libro> libros;
+
+	public LibroDao(Connection cn) {
+		this.cn = cn;
+	}
+	
+	public List<Libro> getConsulta(String sql) throws SQLException {
+		libros = new ArrayList<Libro>();
+		PreparedStatement pst = cn.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();
+		while (rs.next()) {
+			String isbn = rs.getString("isbn");
+			String titulo = rs.getString("titulo");
+			String autor = rs.getString("autor");
+			String editorial = rs.getString("editorial");
+			LocalDate fecha = rs.getDate("fecha").toLocalDate();
+			boolean prestado = rs.getBoolean("prestado");
+		}
+	}
+	
+}

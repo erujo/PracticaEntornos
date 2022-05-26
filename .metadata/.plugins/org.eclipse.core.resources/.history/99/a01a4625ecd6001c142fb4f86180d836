@@ -1,0 +1,47 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import exception.isbnException;
+import modelo.Libro;
+
+public class LibroDao {
+
+	private Connection conn;
+
+	public LibroDao(Connection conn) {
+		super();
+		this.conn = conn;
+	}
+	
+	public List<Libro> leer(String sql) throws SQLException, isbnException {
+		List<Libro> libros = new ArrayList<Libro>();
+		PreparedStatement pst = conn.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();
+		while (rs.next()) {
+			int idLibros = rs.getInt("idlibros");
+			String titulo = rs.getString("titulo");
+			String autor = rs.getString("autor");
+			String editorial = rs.getString("editorial");
+			boolean prestado = rs.getBoolean("prestado");
+			LocalDate fechaPrestamo = rs.getDate("fechaPrestamo").toLocalDate();
+			LocalDate fechaDevolucion = rs.getDate("fechaDevolucion").toLocalDate();
+			String isbn = rs.getString("isbn");
+			LocalDateTime fechaAlta = rs.getTimestamp("fechaAlta").toLocalDateTime();
+			Libro libro = new Libro(idLibros, titulo, autor, editorial, prestado, fechaPrestamo, fechaDevolucion, isbn, fechaAlta);
+			libros.add(libro);
+		}
+		return libros;
+	}
+	
+	public void agregar() {
+		
+	}
+}

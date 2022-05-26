@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;nombre&apos; in &apos;controlador.solicitudesController.recoger(...)&apos; to &apos;dni&apos;&#x0D;&#x0A;- Original project: &apos;Solicitudes2&apos;&#x0D;&#x0A;- Original element: &apos;controlador.solicitudesController.recoger(String).nombre&apos;&#x0D;&#x0A;- Renamed element: &apos;nombre&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;nombre&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;controlador{solicitudesController.java[solicitudesController~recoger~QString;@nombre!641!653!648!653!QString;!0!true" name="dni" references="true" stamp="1647432821006" version="1.0"/>
+</session>

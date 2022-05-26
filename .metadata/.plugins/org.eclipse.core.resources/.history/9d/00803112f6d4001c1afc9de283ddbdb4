@@ -1,0 +1,73 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import controlador.BibliotecaController;
+
+public class Formulario extends JFrame {
+
+	private JPanel panel;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_1_1;
+	private JLabel lblIdLibros;
+	private JLabel lblTitulo;
+	private JLabel lblAutor;
+	private JLabel lblIsbn;
+	private JLabel lblFecha;
+	private JTextField textIdLibros;
+	private JTextField textTitulo;
+	private JTextField textAutor;
+	private JTextField textIsbn;
+	private JTextField textFecha;
+	private JLabel lblFormato;
+	private JCheckBox chckbxPrestado;
+	private ImageIcon imagen;
+	private JButton btnAgregar;
+	private JButton btnEditar;
+	private JButton btnBorrar;
+	private JButton btnGuardar;
+	private JButton btnDeshacer;
+	private JButton btnNavPri;
+	private JButton btnNavIzq;
+	private JButton btnNavDer;
+	private JButton btnNavUlt;
+	private JLabel lblErrorFecha;
+	private List<JTextField> texto;
+	//private BibliotecaController biblioteca;
+	private String dato[][];
+	private int x;
+	private JLabel lblEditorial;
+	private JTextField textEditorial;
+	private JLabel lblErrorIsbn;
+	private boolean agregar;
+	private boolean editar;
+	
+	public Formulario() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panel.setLayout(new BorderLayout(0, 0));
+		setContentPane(panel);
+		definirVentana();
+		setVisible(true);
+	}
+
+	private void definirVentana() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

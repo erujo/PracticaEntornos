@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;contentPane&apos; in &apos;vista.FrmSwing_Listas&apos; to &apos;panel&apos;&#x0D;&#x0A;- Original project: &apos;estudioSwing&apos;&#x0D;&#x0A;- Original element: &apos;vista.FrmSwing_Listas.contentPane&apos;&#x0D;&#x0A;- Renamed element: &apos;vista.FrmSwing_Listas.panel&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;contentPane&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;vista{FrmSwing_Listas.java[FrmSwing_Listas^contentPane" name="panel" references="true" setter="false" stamp="1651253299895" textual="false" version="1.0"/>
+</session>

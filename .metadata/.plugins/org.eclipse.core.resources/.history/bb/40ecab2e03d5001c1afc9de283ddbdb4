@@ -1,0 +1,14 @@
+package controlador;
+
+import java.sql.Connection;
+
+public class LibroController {
+
+	private Connection conn;
+
+	public LibroController(Connection conn) {
+		super();
+		this.conn = conn;
+	}
+	
+}

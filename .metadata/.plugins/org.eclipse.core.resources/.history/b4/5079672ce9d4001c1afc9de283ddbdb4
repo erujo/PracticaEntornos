@@ -1,0 +1,15 @@
+package vista;
+
+import java.sql.Connection;
+
+import dao.DbConnection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DbConnection dbc = new DbConnection();
+		Connection conn = dbc.getConn();
+		dbc.disconnect();
+	}
+
+}

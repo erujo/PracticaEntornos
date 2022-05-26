@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;preparedStatement&apos; in &apos;dao.LibroDao.getConsulta(...)&apos; to &apos;pst&apos;&#x0D;&#x0A;- Original project: &apos;FormularioBBDD2&apos;&#x0D;&#x0A;- Original element: &apos;dao.LibroDao.getConsulta(String).preparedStatement&apos;&#x0D;&#x0A;- Renamed element: &apos;preparedStatement&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;preparedStatement&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;dao{LibroDao.java[LibroDao~getConsulta~QString;@preparedStatement!494!556!512!528!QPreparedStatement;!0!false" name="pst" references="true" stamp="1652774520948" version="1.0"/>
+</session>

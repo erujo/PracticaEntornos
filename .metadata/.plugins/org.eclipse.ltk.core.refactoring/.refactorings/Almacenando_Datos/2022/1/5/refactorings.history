@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;x&apos; in &apos;estudioFicheros.tarjetaClaves.compruebaUsu(...)&apos; to &apos;y&apos;&#x0D;&#x0A;- Original project: &apos;Almacenando_Datos&apos;&#x0D;&#x0A;- Original element: &apos;estudioFicheros.tarjetaClaves.compruebaUsu(String).x&apos;&#x0D;&#x0A;- Renamed element: &apos;x&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;x&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;estudioFicheros{tarjetaClaves.java[tarjetaClaves~compruebaUsu~QString;@x!2443!2451!2447!2447!I!0!false" name="y" references="true" stamp="1643635406105" version="1.0"/>
+</session>

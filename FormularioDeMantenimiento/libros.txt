@@ -1,0 +1,5 @@
+978-84-663-2914-9,El Capitan Alatriste,Arturo Perez Reverte,Alfaguara,2022-03-16,false
+978-84-322-3637-2,El quijote,Cervantes,Alfaguara,2022-02-15,false
+978-84-204-5191-6,A traves de mi ventana, Ariana Godoy,Alfaguara,2022-03-20,true
+978-3-16-148410-0,La biblia,peter,peter entertime,2022-04-17,false
+9788499984636,Wigetta,Willyrex y vegetta777,Planeta vegetta,2015-03-26,true

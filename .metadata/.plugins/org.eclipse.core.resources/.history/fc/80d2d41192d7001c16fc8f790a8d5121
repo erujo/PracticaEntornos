@@ -1,0 +1,24 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+public class Verificacion extends JFrame {
+
+	private JPanel panel;
+
+	public Verificacion() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panel.setLayout(new BorderLayout(0, 0));
+		setContentPane(panel);
+		setVisible(true);
+	}
+
+}

@@ -1,0 +1,112 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+
+public class Curriculum_Vitae extends JFrame {
+
+	private JPanel panel;
+	private JPanel panel_1;
+	private JLabel lblIntro;
+	private JLabel lblNombre;
+	private JLabel lblDirrecion;
+	private JLabel lblTelefono;
+	private JLabel lblPoblacion;
+	private JTextField textNombre;
+	private JTextField textApellidos;
+	private JTextField textDireccion;
+	private JTextField textTelefono;
+	private JLabel lblApellidos;
+	private JComboBox comboPoblacion;
+	private String[] poblacion = {"Jerez", "Trebujena"};
+
+	public Curriculum_Vitae() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 670, 406);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panel);
+		panel.setLayout(null);
+		definirVentana();
+		eventos();
+		setVisible(true);
+	}
+
+	private void eventos() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void definirVentana() {
+		lblIntro = new JLabel("Curriculum Vitae");
+		lblIntro.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblIntro.setBounds(10, 11, 181, 14);
+		panel.add(lblIntro);
+		
+		panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(new LineBorder(new Color(255, 0, 0), 2), "Datos Personales", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBounds(20, 36, 261, 161);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		lblNombre = new JLabel("Nombre:");
+		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNombre.setBounds(10, 13, 65, 14);
+		panel_1.add(lblNombre);
+		
+		lblApellidos = new JLabel("Apellidos:");
+		lblApellidos.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblApellidos.setBounds(10, 38, 65, 14);
+		panel_1.add(lblApellidos);
+		
+		lblDirrecion = new JLabel("Direccion:");
+		lblDirrecion.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDirrecion.setBounds(10, 75, 65, 14);
+		panel_1.add(lblDirrecion);
+		
+		lblTelefono = new JLabel("Telefono:");
+		lblTelefono.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTelefono.setBounds(10, 100, 65, 14);
+		panel_1.add(lblTelefono);
+		
+		lblPoblacion = new JLabel("Poblacion");
+		lblPoblacion.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPoblacion.setBounds(10, 125, 65, 14);
+		panel_1.add(lblPoblacion);
+		
+		textNombre = new JTextField();
+		textNombre.setBounds(85, 11, 86, 20);
+		panel_1.add(textNombre);
+		textNombre.setColumns(10);
+		
+		textApellidos = new JTextField();
+		textApellidos.setBounds(85, 35, 86, 20);
+		panel_1.add(textApellidos);
+		textApellidos.setColumns(10);
+		
+		textDireccion = new JTextField();
+		textDireccion.setBounds(85, 72, 86, 20);
+		panel_1.add(textDireccion);
+		textDireccion.setColumns(10);
+		
+		textTelefono = new JTextField();
+		textTelefono.setBounds(85, 97, 86, 20);
+		panel_1.add(textTelefono);
+		textTelefono.setColumns(10);
+		
+		comboPoblacion = new JComboBox(poblacion);
+		comboPoblacion.setBounds(85, 121, 86, 18);
+		panel_1.add(comboPoblacion);
+	}
+}

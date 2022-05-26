@@ -1,0 +1,23 @@
+package vista;
+
+import java.io.IOException;
+
+import Exception.DniException;
+import Exception.matriculaException;
+import Gestion_ITV.vehiculo;
+import Leer.leer;
+
+public class main {
+
+	public static void main(String[] args) throws IOException {
+		try {
+			vehiculo vehiculo = new vehiculo("Hugo", "Parada Cañas", "32935812l", "1234LKJ");
+			System.out.println(vehiculo);
+		} catch (DniException e) {
+			System.out.println(e.getMessage());
+		} catch (matriculaException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+}

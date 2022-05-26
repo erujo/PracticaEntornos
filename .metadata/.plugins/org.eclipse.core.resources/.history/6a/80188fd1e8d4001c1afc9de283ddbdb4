@@ -1,0 +1,24 @@
+package controlador;
+
+import java.sql.Connection;
+import java.util.List;
+
+import dao.LibroDao;
+import modelo.Libro;
+
+public class libroController {
+	
+	private List<Libro> libros;
+	private Connection cn;
+	
+	public libroController(Connection cn) {
+		super();
+		this.cn = cn;
+	}
+
+	public List<Libro> getLibros() {
+		LibroDao libroDao = new LibroDao(cn);
+		return libros;
+	}
+	
+}

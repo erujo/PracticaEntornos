@@ -1,0 +1,52 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class FrmCombo extends JFrame {
+
+	private JPanel panel;
+	private JLabel lblDia;
+	private JComboBox comboBox;
+	private DefaultComboBoxModel dc;
+
+	public FrmCombo() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panel);
+		panel.setLayout(null);
+		definirVentana();
+		eventos();
+		setVisible(true);
+	}
+
+	private void eventos() {
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+	}
+
+	private void definirVentana() {
+		dc = new DefaultComboBoxModel();
+		dc.addElement("Lunes");dc.addElement("Martes");
+		lblDia = new JLabel("Dia");
+		lblDia.setBounds(10, 11, 76, 23);
+		panel.add(lblDia);
+		
+		comboBox = new JComboBox(dc);
+		comboBox.setBounds(10, 45, 101, 22);
+		panel.add(comboBox);
+	}
+}

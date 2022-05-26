@@ -1,0 +1,16 @@
+package vista;
+
+import exception.isbnException;
+import modelo.Libro;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try {
+			Libro libro = new Libro("978-84-663-2914-8", "El Capitan Alatriste", "Arturo Perez Reverte", "Alfaguara", "2022-03-16", true);
+		} catch (isbnException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}

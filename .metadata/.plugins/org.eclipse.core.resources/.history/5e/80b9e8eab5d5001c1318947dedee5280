@@ -1,0 +1,13 @@
+package controlador;
+
+import java.sql.Connection;
+
+public class LibroController {
+
+	Connection cn;
+
+	public LibroController(Connection cn) {
+		this.cn = cn;
+	}
+	
+}

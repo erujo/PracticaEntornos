@@ -1,0 +1,43 @@
+package vista;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.mysql.cj.protocol.Resultset;
+
+import controlador.LibroController;
+import dao.DbConnection;
+import exception.isbnException;
+import modelo.Libro;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DbConnection dbConnection = new DbConnection();
+		Connection conn = dbConnection.getConn();
+		/*try {
+			PreparedStatement pst = conn.prepareStatement("select * from libros");
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getString("titulo") + "\n");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		LibroController biblioteca = new LibroController(conn);
+		try {
+			List<Libro> libros = biblioteca.leerDatos();
+			for (Libro libro : libros) {
+				System.out.println(libro);
+			}
+		} catch (SQLException | isbnException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

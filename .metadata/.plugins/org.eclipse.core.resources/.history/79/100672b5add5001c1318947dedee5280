@@ -1,0 +1,11 @@
+package vista;
+
+import modelo.Libro;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Libro libro = new Libro("978-84-663-2914-9", "El Capitan Alatriste", "Arturo Perez Reverte", "Alfaguara", "2022-03-16", true);
+	}
+
+}

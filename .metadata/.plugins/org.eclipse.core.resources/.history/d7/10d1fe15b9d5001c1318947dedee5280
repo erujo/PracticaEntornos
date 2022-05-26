@@ -1,0 +1,17 @@
+package controlador;
+
+import java.sql.Connection;
+import java.util.List;
+
+import modelo.Libro;
+
+public class LibroController {
+
+	Connection cn;
+	List<Libro> libros;
+
+	public LibroController(Connection cn) {
+		this.cn = cn;
+	}
+	
+}

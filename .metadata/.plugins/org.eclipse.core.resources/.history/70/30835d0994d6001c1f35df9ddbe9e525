@@ -1,0 +1,56 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import exception.isbnException;
+import modelo.Libro;
+
+public class LibroDao {
+
+	Connection cn;
+
+	public LibroDao(Connection cn) {
+		this.cn = cn;
+	}
+	
+	public List<Libro> getConsulta(String sql) throws SQLException, isbnException {
+		List<Libro> libros = new ArrayList<Libro>();
+		PreparedStatement pst = cn.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();
+		while (rs.next()) {
+			String isbn = rs.getString("isbn");
+			String titulo = rs.getString("titulo");
+			String autor = rs.getString("autor");
+			String editorial = rs.getString("editorial");
+			LocalDate fecha = rs.getDate("fecha").toLocalDate();
+			boolean prestado = rs.getBoolean("prestado");
+			Libro libro = new Libro(isbn, titulo, autor, editorial, fecha, prestado);
+			libros.add(libro);
+		}
+		return libros;
+	}
+	
+	public void insertar(Libro libro, String sql) throws SQLException {
+		PreparedStatement pst = cn.prepareStatement(sql);
+		pst.setString(1, libro.getIsbn());
+		pst.setString(2, libro.getTitulo());
+		pst.setString(3, libro.getAutor());
+		pst.setString(4, libro.getEditorial());
+		pst.setDate(5, Date.valueOf(libro.getFecha()));
+		pst.setBoolean(6, libro.isPrestado());
+		pst.executeUpdate();
+		//ResultSet rs = pst.executeQuery();
+	}
+	
+	public void borrar(Libro libro, String sql) {
+		
+	}
+	
+}

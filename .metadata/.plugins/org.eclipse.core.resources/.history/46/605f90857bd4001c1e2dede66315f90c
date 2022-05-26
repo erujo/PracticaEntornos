@@ -1,0 +1,30 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.cj.protocol.Resultset;
+import com.mysql.cj.xdevapi.PreparableStatement;
+
+import modelo.Libro;
+
+public class LibroDao {
+
+	private Connection cn;
+
+	public LibroDao(Connection cn) {
+		super();
+		this.cn = cn;
+	}
+
+	public List<Libro> getConsulta(String sql) throws SQLException {
+		List<Libro> libros = new ArrayList<Libro>();
+		PreparedStatement pst = cn.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();
+		return libros;
+	}
+}

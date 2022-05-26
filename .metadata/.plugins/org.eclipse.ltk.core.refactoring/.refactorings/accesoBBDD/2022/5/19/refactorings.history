@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;login&apos; in &apos;dao.DbConnection&apos; to &apos;user&apos;&#x0D;&#x0A;- Original project: &apos;accesoBBDD&apos;&#x0D;&#x0A;- Original element: &apos;dao.DbConnection.login&apos;&#x0D;&#x0A;- Renamed element: &apos;dao.DbConnection.user&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;login&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;dao{DbConnection.java[DbConnection^login" name="user" references="true" setter="false" stamp="1652635916838" textual="false" version="1.0"/>
+</session>

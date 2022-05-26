@@ -1,0 +1,68 @@
+package vista;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.mysql.cj.protocol.Resultset;
+
+import controlador.LibroController;
+import dao.DbConnection;
+import exception.isbnException;
+import modelo.Libro;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DbConnection dbConnection = new DbConnection();
+		Connection conn = dbConnection.getConn();
+		/*try {
+			PreparedStatement pst = conn.prepareStatement("select * from libros");
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getString("titulo") + "\n");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		/*LibroController biblioteca = new LibroController(conn);
+		try {
+			List<Libro> libros = biblioteca.leerDatos();
+			for (Libro libro : libros) {
+				System.out.println(libro);
+			}
+		} catch (SQLException | isbnException e) {
+			System.out.println(e.getMessage());
+		}*/
+		String isbn = "978-84-95618-71-9";
+		isbn = isbn.replace("-", "");
+		if (isbn.length() == 13) {
+			int numControl = Integer.parseInt(Character.toString(isbn.charAt(12)));
+			String numeros = isbn.substring(0, 12);
+			int suma = 0;
+			for (int x = 0; x < numeros.length(); x++) {
+				if ((x+1) % 2 == 0) {
+					int num = Integer.parseInt(Character.toString(isbn.charAt(12)));
+					num*=3;
+					suma+=num;
+				} else {
+					int num = Integer.parseInt(Character.toString(isbn.charAt(12)));
+					suma+=num;
+				}
+			}
+			int resto = suma % 10;
+			if (resto != 0) {
+				resto = 10 - resto;
+			}
+			if (resto != numControl) {
+				System.out.println("xd");
+			}
+		} else {
+			System.out.println("xd");
+		}
+	}
+
+}

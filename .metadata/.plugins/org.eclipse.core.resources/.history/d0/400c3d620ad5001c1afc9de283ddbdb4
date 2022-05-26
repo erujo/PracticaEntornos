@@ -1,0 +1,24 @@
+package controlador;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+import dao.LibroDao;
+import modelo.Libro;
+
+public class LibroController {
+
+	private Connection conn;
+	private List<Libro> libros;
+
+	public LibroController(Connection conn) {
+		super();
+		this.conn = conn;
+	}
+	
+	public List<Libro> getConsulta() throws SQLException {
+		LibroDao biblioteca = new LibroDao(conn);
+		return biblioteca.getConsulta("select * from libros");
+	}
+}
