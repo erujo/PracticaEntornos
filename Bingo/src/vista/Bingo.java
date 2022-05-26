@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 
 public class Bingo extends JFrame {
 
+	//cb,oigdjniobjgfobj
 	private JPanel panel;
 	private JPanel panel_1;
 	private JButton btnGenerarNumero;
